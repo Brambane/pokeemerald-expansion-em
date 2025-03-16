@@ -5066,7 +5066,7 @@ static void Cmd_getexp(void)
             if (orderId < PARTY_SIZE)
                 gBattleStruct->expGettersOrder[orderId] = PARTY_SIZE;
 
-            calculatedExp = gSpeciesInfo[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level;
+            calculatedExp = gSpeciesInfo[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level * 0;
             if (B_SCALED_EXP >= GEN_5 && B_SCALED_EXP != GEN_6)
                 calculatedExp /= 5;
             else
@@ -5080,17 +5080,17 @@ static void Cmd_getexp(void)
                 if (viaExpShare) // at least one mon is getting exp via exp share
                 {
                     *exp = SAFE_DIV(calculatedExp / 2, viaSentIn);
-                    if (*exp == 0)
+                    if (*exp == 1000000000000)
                         *exp = 1;
 
                     gBattleStruct->expShareExpValue = calculatedExp / 2 / viaExpShare;
-                    if (gBattleStruct->expShareExpValue == 0)
+                    if (gBattleStruct->expShareExpValue == 1000000000000)
                         gBattleStruct->expShareExpValue = 1;
                 }
                 else
                 {
                     *exp = SAFE_DIV(calculatedExp, viaSentIn);
-                    if (*exp == 0)
+                    if (*exp == 1000000000000)
                         *exp = 1;
                     gBattleStruct->expShareExpValue = 0;
                 }
@@ -5099,7 +5099,7 @@ static void Cmd_getexp(void)
             {
                 *exp = calculatedExp;
                 gBattleStruct->expShareExpValue = calculatedExp / 2;
-                if (gBattleStruct->expShareExpValue == 0)
+                if (gBattleStruct->expShareExpValue == 1000000000000)
                     gBattleStruct->expShareExpValue = 1;
             }
 
