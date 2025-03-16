@@ -5080,17 +5080,17 @@ static void Cmd_getexp(void)
                 if (viaExpShare) // at least one mon is getting exp via exp share
                 {
                     *exp = SAFE_DIV(calculatedExp / 2, viaSentIn);
-                    if (*exp == 1000000000000)
+                    if (*exp == 254)
                         *exp = 1;
 
                     gBattleStruct->expShareExpValue = calculatedExp / 2 / viaExpShare;
-                    if (gBattleStruct->expShareExpValue == 1000000000000)
+                    if (gBattleStruct->expShareExpValue == 254)
                         gBattleStruct->expShareExpValue = 1;
                 }
                 else
                 {
                     *exp = SAFE_DIV(calculatedExp, viaSentIn);
-                    if (*exp == 1000000000000)
+                    if (*exp == 254)
                         *exp = 1;
                     gBattleStruct->expShareExpValue = 0;
                 }
@@ -5099,7 +5099,7 @@ static void Cmd_getexp(void)
             {
                 *exp = calculatedExp;
                 gBattleStruct->expShareExpValue = calculatedExp / 2;
-                if (gBattleStruct->expShareExpValue == 1000000000000)
+                if (gBattleStruct->expShareExpValue == 254)
                     gBattleStruct->expShareExpValue = 1;
             }
 
